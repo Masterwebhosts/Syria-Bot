@@ -53,7 +53,10 @@
 
 /* Question */
 
-#syria-bot-question {
+#syria-bot-floating #syria-bot-question {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -63,7 +66,10 @@
 
 /* Button */
 
-#syria-bot-send {
+#syria-bot-floating #syria-bot-send {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     width: 100%;
     margin-top: 10px;
     padding: 10px;
