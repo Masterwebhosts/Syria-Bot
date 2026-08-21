@@ -5,6 +5,8 @@ Plugin URI: https://tradesphare.com/blog/syria-bot/
 Description: AI customer support chatbot powered by your WordPress content without external AI services.
 Version: 1.1.0
 Author: Syria Bot
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: syria-bot
 Domain Path: /languages
 */
@@ -339,6 +341,7 @@ function syria_bot_check_database(){
                 'syria_bot_create_database'
             )
         ){
+
 
 
             syria_bot_create_database();
