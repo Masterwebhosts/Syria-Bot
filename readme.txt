@@ -2,7 +2,7 @@
 Contributors: syria-bot
 Tags: chatbot, ai, customer support, wordpress chatbot, support
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.1.0
 License: GPL-2.0-or-later
