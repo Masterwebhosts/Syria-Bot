@@ -1,8 +1,8 @@
-﻿=== Syria Bot ===
+=== Syria Bot ===
 Contributors: syria-bot
 Tags: chatbot, ai, customer support, wordpress chatbot, support
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 1.1.0
 License: GPL-2.0-or-later
@@ -57,11 +57,16 @@ Yes. Syria Bot is designed with RTL and Arabic content in mind.
 
 == Support ==
 
-Documentation:
-https://tradesphare.com/blog/syria-bot/
+Documentation: https://tradesphare.com/blog/syria-bot/
 
-Website:
-https://tradesphare.com/
+Website: https://tradesphare.com/
+
+== Changelog ==
+
+= 1.1.0 =
+* Improved frontend widget markup compatibility with LiteSpeed HTML optimization.
+* Improved frontend widget controls and compatibility.
+* Removed frontend diagnostic logging from the production JavaScript.
 
 == License ==
 
