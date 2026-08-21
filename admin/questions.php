@@ -74,25 +74,22 @@ function syria_bot_questions_page() {
         ? sanitize_text_field( wp_unslash( $_GET['syria_question_search'] ) )
         : '';
 
-    $sql = "
-        SELECT id, question, count, status, created_at, updated_at
-        FROM {$table}
-        WHERE 1=1
-    ";
-
-    $params = array();
-
     if ( '' !== $search ) {
-        $sql .= ' AND question LIKE %s';
-        $params[] = '%' . $wpdb->esc_like( $search ) . '%';
+        $questions = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT id, question, count, status, created_at, updated_at FROM {$table} WHERE question LIKE %s ORDER BY count DESC, created_at DESC LIMIT %d",
+                '%' . $wpdb->esc_like( $search ) . '%',
+                100
+            )
+        );
+    } else {
+        $questions = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT id, question, count, status, created_at, updated_at FROM {$table} ORDER BY count DESC, created_at DESC LIMIT %d",
+                100
+            )
+        );
     }
-
-    $sql .= ' ORDER BY count DESC, created_at DESC LIMIT %d';
-    $params[] = 100;
-
-    $questions = $wpdb->get_results(
-        $wpdb->prepare( $sql, $params )
-    );
     ?>
 
     <div class="wrap">
