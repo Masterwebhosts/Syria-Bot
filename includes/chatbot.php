@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -85,7 +85,7 @@ function syria_bot_chat(){
 
                 'message'=>__(
                     'Too many requests. Please wait.',
-                    'Syria-Bot'
+                    'syria-bot'
                 )
 
             )
@@ -137,7 +137,7 @@ function syria_bot_chat(){
 
                 'message'=>__(
                     'Invalid request.',
-                    'Syria-Bot'
+                    'syria-bot'
                 )
 
             )
@@ -181,7 +181,7 @@ function syria_bot_chat(){
 
                 'message'=>__(
                     'Please enter your question.',
-                    'Syria-Bot'
+                    'syria-bot'
                 )
 
             )
@@ -300,7 +300,7 @@ function syria_bot_chat(){
 
             'answer'=>__(
                 'No suitable answer found. Your question has been saved for improvement.',
-                'Syria-Bot'
+                'syria-bot'
             )
 
         )
@@ -513,3 +513,4 @@ function syria_bot_extract_answer(
 
 
 }
+

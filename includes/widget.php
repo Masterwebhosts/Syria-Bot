@@ -1,4 +1,4 @@
-﻿
+
 
 <?php
 
@@ -95,4 +95,5 @@ add_action(
     'syria_bot_widget',
     999
 );
+
 

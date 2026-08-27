@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
@@ -20,7 +20,7 @@ function syria_bot_questions_page() {
 
     if ( $exists !== $table ) {
         echo '<div class="notice notice-error"><p>';
-        esc_html_e( 'Questions table does not exist.', 'Syria-Bot' );
+        esc_html_e( 'Questions table does not exist.', 'syria-bot' );
         echo '</p></div>';
         return;
     }
@@ -36,7 +36,7 @@ function syria_bot_questions_page() {
         if ( $id ) {
             $wpdb->delete( $table, array( 'id' => $id ), array( '%d' ) );
             echo '<div class="notice notice-success"><p>';
-            esc_html_e( 'Question deleted successfully.', 'Syria-Bot' );
+            esc_html_e( 'Question deleted successfully.', 'syria-bot' );
             echo '</p></div>';
         }
     }
@@ -65,7 +65,7 @@ function syria_bot_questions_page() {
             );
 
             echo '<div class="notice notice-success"><p>';
-            esc_html_e( 'Status updated successfully.', 'Syria-Bot' );
+            esc_html_e( 'Status updated successfully.', 'syria-bot' );
             echo '</p></div>';
         }
     }
@@ -93,7 +93,7 @@ function syria_bot_questions_page() {
     ?>
 
     <div class="wrap">
-        <h1><?php esc_html_e( 'Incoming Questions', 'Syria-Bot' ); ?></h1>
+        <h1><?php esc_html_e( 'Incoming Questions', 'syria-bot' ); ?></h1>
 
         <form method="get">
             <input type="hidden" name="page" value="syria-bot-questions">
@@ -101,10 +101,10 @@ function syria_bot_questions_page() {
                 type="search"
                 name="syria_question_search"
                 value="<?php echo esc_attr( $search ); ?>"
-                placeholder="<?php esc_attr_e( 'Search questions', 'Syria-Bot' ); ?>"
+                placeholder="<?php esc_attr_e( 'Search questions', 'syria-bot' ); ?>"
             >
             <button class="button" type="submit">
-                <?php esc_html_e( 'Search', 'Syria-Bot' ); ?>
+                <?php esc_html_e( 'Search', 'syria-bot' ); ?>
             </button>
         </form>
 
@@ -114,11 +114,11 @@ function syria_bot_questions_page() {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th><?php esc_html_e( 'Question', 'Syria-Bot' ); ?></th>
-                    <th><?php esc_html_e( 'Count', 'Syria-Bot' ); ?></th>
-                    <th><?php esc_html_e( 'Status', 'Syria-Bot' ); ?></th>
-                    <th><?php esc_html_e( 'Updated', 'Syria-Bot' ); ?></th>
-                    <th><?php esc_html_e( 'Actions', 'Syria-Bot' ); ?></th>
+                    <th><?php esc_html_e( 'Question', 'syria-bot' ); ?></th>
+                    <th><?php esc_html_e( 'Count', 'syria-bot' ); ?></th>
+                    <th><?php esc_html_e( 'Status', 'syria-bot' ); ?></th>
+                    <th><?php esc_html_e( 'Updated', 'syria-bot' ); ?></th>
+                    <th><?php esc_html_e( 'Actions', 'syria-bot' ); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -155,19 +155,19 @@ function syria_bot_questions_page() {
                             );
                             ?>
                             <a href="<?php echo esc_url( $review ); ?>">
-                                <?php esc_html_e( 'Review', 'Syria-Bot' ); ?>
+                                <?php esc_html_e( 'Review', 'syria-bot' ); ?>
                             </a>
                             |
                             <a href="<?php echo esc_url( $answered ); ?>">
-                                <?php esc_html_e( 'Answered', 'Syria-Bot' ); ?>
+                                <?php esc_html_e( 'Answered', 'syria-bot' ); ?>
                             </a>
                             |
                             <a
                                 href="<?php echo esc_url( $delete ); ?>"
                                 style="color:red"
-                                onclick="return confirm('<?php echo esc_attr__( 'Delete question?', 'Syria-Bot' ); ?>')"
+                                onclick="return confirm('<?php echo esc_attr__( 'Delete question?', 'syria-bot' ); ?>')"
                             >
-                                <?php esc_html_e( 'Delete', 'Syria-Bot' ); ?>
+                                <?php esc_html_e( 'Delete', 'syria-bot' ); ?>
                             </a>
                         </td>
                     </tr>
@@ -175,7 +175,7 @@ function syria_bot_questions_page() {
             <?php else : ?>
                 <tr>
                     <td colspan="6">
-                        <?php esc_html_e( 'No questions found.', 'Syria-Bot' ); ?>
+                        <?php esc_html_e( 'No questions found.', 'syria-bot' ); ?>
                     </td>
                 </tr>
             <?php endif; ?>
@@ -184,5 +184,6 @@ function syria_bot_questions_page() {
     </div>
     <?php
 }
+
 
 

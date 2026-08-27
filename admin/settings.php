@@ -1,4 +1,4 @@
-﻿
+
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -215,3 +215,4 @@ function syria_bot_settings_page() {
 
     <?php
 }
+
