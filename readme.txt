@@ -1,5 +1,5 @@
 ﻿=== Syria Bot ===
-Contributors: syria-bot
+Contributors: masterwebhosts
 Tags: chatbot, ai, customer support, wordpress chatbot, support
 Requires at least: 6.0
 Tested up to: 7.1
