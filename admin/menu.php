@@ -13,13 +13,13 @@ function syria_bot_admin_menu(){
 
     add_menu_page(
 
-        __('Syria Bot', 'Syria-Bot'),
+        __('Syria Bot', 'syria-bot'),
 
-        __('Syria Bot', 'Syria-Bot'),
+        __('Syria Bot', 'syria-bot'),
 
         'manage_options',
 
-        'Syria-Bot',
+        'syria-bot',
 
         'syria_bot_knowledge_page',
 
@@ -32,15 +32,15 @@ function syria_bot_admin_menu(){
 
     add_submenu_page(
 
-        'Syria-Bot',
+        'syria-bot',
 
-        __('Knowledge Base', 'Syria-Bot'),
+        __('Knowledge Base', 'syria-bot'),
 
-        __('Knowledge Base', 'Syria-Bot'),
+        __('Knowledge Base', 'syria-bot'),
 
         'manage_options',
 
-        'Syria-Bot',
+        'syria-bot',
 
         'syria_bot_knowledge_page'
 
@@ -49,11 +49,11 @@ function syria_bot_admin_menu(){
 
     add_submenu_page(
 
-        'Syria-Bot',
+        'syria-bot',
 
-        __('Incoming Questions', 'Syria-Bot'),
+        __('Incoming Questions', 'syria-bot'),
 
-        __('Questions', 'Syria-Bot'),
+        __('Questions', 'syria-bot'),
 
         'manage_options',
 
@@ -66,11 +66,11 @@ function syria_bot_admin_menu(){
 
     add_submenu_page(
 
-        'Syria-Bot',
+        'syria-bot',
 
-        __('Settings', 'Syria-Bot'),
+        __('Settings', 'syria-bot'),
 
-        __('Settings', 'Syria-Bot'),
+        __('Settings', 'syria-bot'),
 
         'manage_options',
 
@@ -88,3 +88,4 @@ add_action(
     'admin_menu',
     'syria_bot_admin_menu'
 );
+

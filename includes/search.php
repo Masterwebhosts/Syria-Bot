@@ -296,35 +296,18 @@ function syria_bot_search($question){
             $keywords
         );
 
-
-
-
-
-
-
-    $results=$wpdb->get_results(
-
-        "
-        SELECT
-
-        id,
-        title,
-        content,
-        keywords,
-        tags,
-        category_name,
-        parent_category,
-        url
-
-        FROM {$table}
-
-        "
-
-    );
-
-
-
-
+      $results = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+	'SELECT
+		id,
+		title,
+		content,
+		keywords,
+		tags,
+		category_name,
+		parent_category,
+		url
+	FROM ' . $wpdb->prefix . 'ai_bot_knowledge'
+); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
 
     if(empty($results)){
 

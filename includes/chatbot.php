@@ -28,7 +28,11 @@ add_action(
 function syria_bot_check_rate_limit(){
 
 
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $ip = isset( $_SERVER['REMOTE_ADDR'] )
+    ? sanitize_text_field(
+        wp_unslash( $_SERVER['REMOTE_ADDR'] )
+    )
+    : 'unknown';
 
 
     $key = 'syria_bot_limit_' . md5($ip);
@@ -85,7 +89,7 @@ function syria_bot_chat(){
 
                 'message'=>__(
                     'Too many requests. Please wait.',
-                    'Syria-Bot'
+                    'syria-bot'
                 )
 
             )
@@ -137,7 +141,7 @@ function syria_bot_chat(){
 
                 'message'=>__(
                     'Invalid request.',
-                    'Syria-Bot'
+                    'syria-bot'
                 )
 
             )
@@ -181,7 +185,7 @@ function syria_bot_chat(){
 
                 'message'=>__(
                     'Please enter your question.',
-                    'Syria-Bot'
+                    'syria-bot'
                 )
 
             )
@@ -300,7 +304,7 @@ function syria_bot_chat(){
 
             'answer'=>__(
                 'No suitable answer found. Your question has been saved for improvement.',
-                'Syria-Bot'
+                'syria-bot'
             )
 
         )
@@ -513,3 +517,4 @@ function syria_bot_extract_answer(
 
 
 }
+

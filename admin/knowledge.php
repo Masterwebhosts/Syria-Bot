@@ -1,191 +1,154 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 /**
  * صفحة قاعدة المعرفة.
+ *
+ * @return void
  */
 function syria_bot_knowledge_page() {
 
-    global $wpdb;
+	global $wpdb;
 
-    $table = $wpdb->prefix . 'ai_bot_knowledge';
+	/*
+	 * اسم الجدول يتم توليده داخلياً من بادئة WordPress
+	 * ولا يأتي من إدخال المستخدم.
+	 */
+	$count = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+	'SELECT COUNT(*) FROM ' . $wpdb->prefix . 'ai_bot_knowledge'
+);
 
-    $count = (int) $wpdb->get_var(
-        $wpdb->prepare(
-            'SELECT COUNT(*) FROM %i',
-            $table
-        )
-    );
+$articles = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+	'SELECT * FROM ' . $wpdb->prefix . 'ai_bot_knowledge ORDER BY updated_at DESC'
+);
+	?>
 
-    $articles = $wpdb->get_results(
-        $wpdb->prepare(
-            'SELECT * FROM %i ORDER BY updated_at DESC',
-            $table
-        )
-    );
+	<div class="wrap">
 
-    ?>
+		<h1>
+			<?php echo esc_html__( 'Syria Bot', 'syria-bot' ); ?>
+		</h1>
 
-    <div class="wrap">
+		<h2>
+			<?php echo esc_html__( 'Knowledge Base', 'syria-bot' ); ?>
+		</h2>
 
-        <h1>
-            <?php echo esc_html__(
-                'Syria Bot',
-                'syria-bot'
-            ); ?>
-        </h1>
+		<p>
+			<?php echo esc_html__( 'Stored knowledge articles:', 'syria-bot' ); ?>
 
-        <h2>
-            <?php echo esc_html__(
-                'Knowledge Base',
-                'syria-bot'
-            ); ?>
-        </h2>
+			<strong>
+				<?php echo esc_html( $count ); ?>
+			</strong>
+		</p>
 
-        <p>
-            <?php echo esc_html__(
-                'Stored knowledge articles:',
-                'syria-bot'
-            ); ?>
+		<button
+			id="syria-bot-start-import"
+			class="button button-primary"
+			type="button"
+		>
+			<?php esc_html_e( 'Start Knowledge Update', 'syria-bot' ); ?>
+		</button>
 
-            <strong>
-                <?php echo esc_html( $count ); ?>
-            </strong>
-        </p>
+		<div
+			id="syria-bot-progress"
+			style="margin-top:20px;"
+		></div>
 
-        <button
-            id="syria-bot-start-import"
-            class="button button-primary"
-        >
-            <?php esc_html_e(
-                'Start Knowledge Update',
-                'syria-bot'
-            ); ?>
-        </button>
+		<hr>
 
-        <div
-            id="syria-bot-progress"
-            style="margin-top:20px;"
-        ></div>
+		<h2>
+			<?php echo esc_html__( 'Stored Articles', 'syria-bot' ); ?>
+		</h2>
 
-        <hr>
+		<table class="widefat fixed striped">
 
-        <h2>
-            <?php echo esc_html__(
-                'Stored Articles',
-                'syria-bot'
-            ); ?>
-        </h2>
+			<thead>
 
-        <table class="widefat fixed striped">
+				<tr>
 
-            <thead>
+					<th>
+						<?php esc_html_e( 'Title', 'syria-bot' ); ?>
+					</th>
 
-                <tr>
+					<th>
+						<?php esc_html_e( 'Main Category', 'syria-bot' ); ?>
+					</th>
 
-                    <th>
-                        <?php esc_html_e(
-                            'Title',
-                            'syria-bot'
-                        ); ?>
-                    </th>
+					<th>
+						<?php esc_html_e( 'Sub Category', 'syria-bot' ); ?>
+					</th>
 
-                    <th>
-                        <?php esc_html_e(
-                            'Main Category',
-                            'syria-bot'
-                        ); ?>
-                    </th>
+					<th>
+						<?php esc_html_e( 'Tags', 'syria-bot' ); ?>
+					</th>
 
-                    <th>
-                        <?php esc_html_e(
-                            'Sub Category',
-                            'syria-bot'
-                        ); ?>
-                    </th>
+					<th>
+						<?php esc_html_e( 'Updated', 'syria-bot' ); ?>
+					</th>
 
-                    <th>
-                        <?php esc_html_e(
-                            'Tags',
-                            'syria-bot'
-                        ); ?>
-                    </th>
+				</tr>
 
-                    <th>
-                        <?php esc_html_e(
-                            'Updated',
-                            'syria-bot'
-                        ); ?>
-                    </th>
+			</thead>
 
-                </tr>
+			<tbody>
 
-            </thead>
+			<?php if ( ! empty( $articles ) ) : ?>
 
-            <tbody>
+				<?php foreach ( $articles as $article ) : ?>
 
-            <?php if ( ! empty( $articles ) ) : ?>
+					<tr>
 
-                <?php foreach ( $articles as $article ) : ?>
+						<td>
+							<a
+								href="<?php echo esc_url( $article->url ); ?>"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<?php echo esc_html( $article->title ); ?>
+							</a>
+						</td>
 
-                    <tr>
+						<td>
+							<?php echo esc_html( $article->category_name ); ?>
+						</td>
 
-                        <td>
+						<td>
+							<?php echo esc_html( $article->parent_category ); ?>
+						</td>
 
-                            <a
-                                href="<?php echo esc_url( $article->url ); ?>"
-                                target="_blank"
-                            >
-                                <?php echo esc_html( $article->title ); ?>
-                            </a>
+						<td>
+							<?php echo esc_html( $article->tags ); ?>
+						</td>
 
-                        </td>
+						<td>
+							<?php echo esc_html( $article->updated_at ); ?>
+						</td>
 
-                        <td>
-                            <?php echo esc_html( $article->category_name ); ?>
-                        </td>
+					</tr>
 
-                        <td>
-                            <?php echo esc_html( $article->parent_category ); ?>
-                        </td>
+				<?php endforeach; ?>
 
-                        <td>
-                            <?php echo esc_html( $article->tags ); ?>
-                        </td>
+			<?php else : ?>
 
-                        <td>
-                            <?php echo esc_html( $article->updated_at ); ?>
-                        </td>
+				<tr>
 
-                    </tr>
+					<td colspan="5">
+						<?php esc_html_e( 'No articles found.', 'syria-bot' ); ?>
+					</td>
 
-                <?php endforeach; ?>
+				</tr>
 
-            <?php else : ?>
+			<?php endif; ?>
 
-                <tr>
+			</tbody>
 
-                    <td colspan="5">
+		</table>
 
-                        <?php esc_html_e(
-                            'No articles found.',
-                            'syria-bot'
-                        ); ?>
+	</div>
 
-                    </td>
-
-                </tr>
-
-            <?php endif; ?>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-    <?php
+	<?php
 }
+
