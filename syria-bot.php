@@ -153,9 +153,21 @@ add_action(
 
 function syria_bot_activate() {
 
-    update_option(
-        'syria_bot_needs_database',
-        true
+    /*
+     * Create/update the plugin tables immediately during activation.
+     * This avoids depending on a later admin_init request to finish setup.
+     */
+    if ( function_exists( 'syria_bot_create_database' ) ) {
+        syria_bot_create_database();
+
+        update_option(
+            'syria_bot_db_version',
+            SYRIA_BOT_VERSION
+        );
+    }
+
+    delete_option(
+        'syria_bot_needs_database'
     );
 }
 
@@ -166,7 +178,7 @@ register_activation_hook(
 
 /*
 |--------------------------------------------------------------------------
-| Database Check
+| Database Check / Migration
 |--------------------------------------------------------------------------
 */
 
