@@ -1,149 +1,78 @@
 jQuery(document).ready(function ($) {
 
+    $('#syria-bot-start-import').on('click', function (e) {
 
-    $('#syria-bot-start-import').on(
-        'click',
-        function (e) {
+        e.preventDefault();
 
+        let button = $(this);
 
-            e.preventDefault();
+        button.prop('disabled', true);
 
+        $('#syria-bot-progress').html(
+            'جاري بدء تحديث قاعدة المعرفة...'
+        );
 
-            let button = $(this);
+        function runImport() {
 
+            $.ajax({
+                url: syriaBotAdmin.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'syria_bot_import_batch',
+                    nonce: syriaBotAdmin.nonce
+                },
+                success: function (response) {
 
-            button.prop(
-                'disabled',
-                true
-            );
+                    if (response.success) {
 
+                        if (response.data.finished) {
 
-            $('#syria-bot-progress').html(
-                'جاري بدء تحديث قاعدة المعرفة...'
-            );
+                            $('#syria-bot-progress').html(
+                                response.data.message
+                            );
 
-
-
-            function runImport() {
-
-
-                $.ajax({
-
-                    url: ajaxurl,
-
-                    type: 'POST',
-
-                    data: {
-
-
-                        action: 'syria_bot_import_batch',
-
-
-                        nonce: syriaBotAdmin.nonce
-
-
-                    },
-
-
-                    success: function (response) {
-
-
-
-                        if (
-                            response.success
-                        ) {
-
-
-
-                            if (
-                                response.data.finished
-                            ) {
-
-
-                                $('#syria-bot-progress').html(
-
-                                    response.data.message
-
-                                );
-
-
-                                button.prop(
-                                    'disabled',
-                                    false
-                                );
-
-
-                            } else {
-
-
-
-                                $('#syria-bot-progress').html(
-
-                                    'تم استيراد: ' +
-                                    response.data.offset +
-                                    ' مقال'
-
-                                );
-
-
-                                runImport();
-
-
-                            }
-
-
+                            button.prop('disabled', false);
 
                         } else {
 
-
                             $('#syria-bot-progress').html(
-                                'حدث خطأ أثناء التحديث'
+                                'تم استيراد: ' +
+                                response.data.offset +
+                                ' مقال'
                             );
 
-
-                            button.prop(
-                                'disabled',
-                                false
-                            );
-
-
+                            runImport();
                         }
 
-
-                    },
-
-
-                    error: function () {
-
+                    } else {
 
                         $('#syria-bot-progress').html(
-                            'تعذر الاتصال بالخادم'
+                            response.data && response.data.message
+                                ? response.data.message
+                                : 'حدث خطأ أثناء التحديث'
                         );
 
-
-                        button.prop(
-                            'disabled',
-                            false
-                        );
-
-
+                        button.prop('disabled', false);
                     }
+                },
+                error: function (xhr, status, error) {
 
+                    console.error('Syria Bot AJAX Error:', {
+                        status: status,
+                        error: error,
+                        http_status: xhr.status,
+                        response: xhr.responseText
+                    });
 
-                });
+                    $('#syria-bot-progress').html(
+                        'تعذر الاتصال بالخادم (' + xhr.status + ')'
+                    );
 
-
-            }
-
-
-
-            runImport();
-
-
-
+                    button.prop('disabled', false);
+                }
+            });
         }
 
-    );
-
-
+        runImport();
+    });
 });
