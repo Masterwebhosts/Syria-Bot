@@ -3,7 +3,7 @@
 Plugin Name: Syria Bot
 Plugin URI: https://tradesphare.com/blog/syria-bot/
 Description: AI customer support chatbot powered by your WordPress content without external AI services.
-Version: 1.1.1
+Version: 1.1.2
 Author: Yassin Sheikh Hassan
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define(
     'SYRIA_BOT_VERSION',
-    '1.1.1'
+    '1.1.2'
 );
 
 define(
