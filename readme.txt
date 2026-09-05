@@ -4,7 +4,7 @@ Tags: chatbot, ai, customer support, wordpress chatbot, support
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,6 +62,10 @@ Documentation: https://tradesphare.com/blog/syria-bot/
 Website: https://tradesphare.com/
 
 == Changelog ==
+
+= 1.1.2 =
+* Updated plugin author metadata.
+* Prepared the plugin for the next WordPress.org release.
 
 = 1.1.1 =
 * Improved compatibility with WordPress Plugin Check.
